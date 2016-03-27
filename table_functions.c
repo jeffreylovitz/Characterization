@@ -1,7 +1,4 @@
 #include "runner.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 value** initTable(){
 	value **table = (value **)malloc(ARRAY_SIZE * sizeof(value*));
