@@ -6,7 +6,7 @@ Both the concatenated keywords and the value are made into a struct and hashed
 by summing the ASCII value of the keywords, multiplying by 31, and taking the
 modulo for 100.
 
-structured by a regex but hopefully later it will be able to select characters instead) and making a struct for every other word in the sentence.  This struct contains the key word, the value word, and the frequency of the pairing (1 on insertion).
+Two regular expressions determine whether a word is a proper noun, a sentence end, or neither.  Two proper nouns (a first and last name) cause the program to make every subsequent word into a linked-list node.  The node struct contains the key word, the value word, and the frequency of the pairing (1 on insertion).
 
 Since only the key word is used in the hash function and the hash function is
 deterministic, each of the 100 buckets will become populated with the different

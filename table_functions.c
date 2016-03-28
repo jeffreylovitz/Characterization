@@ -26,27 +26,40 @@ value* initNode(){
  * Defined constructor
  */
 value* insertNode(char *indexWordIn, char *valueWordIn){
-	//printf("inserting %s: %s\n", indexWordIn, valueWordIn);
 	int i, done = 0;
 	value *buildNode;
 	i = hash(indexWordIn);
 	value *currentNode = hashtable[i];
 	value *prev;
+	// Iterate to end of linked list
 	while(currentNode != NULL){
+		/*
+		 * If a match is found, its frequency is incremented
+		 * and the loop breaks, moving on the next value.
+		 */
 		if((currentNode->valueWord != NULL) &&!(strcmp(currentNode->valueWord, valueWordIn))){
 			currentNode->frequency++;
 			buildNode = currentNode;
 			done = 1;
 			break;
 		}
+		/*
+		 * We store the current and previous node
+		 */
 		prev = currentNode;
 		currentNode = currentNode->next;
 	}
+	// If no match is found, a new node is constructed.
 	if(!done){
 		buildNode = (value *)malloc(sizeof(value));
 		buildNode->indexWord = (char *)malloc(LEN * sizeof(char));
 		buildNode->valueWord = (char *)malloc(LEN * sizeof(char));
 		prev->next = buildNode;
+		/*
+		 * IMPORTANT - strcpy or something similar must be
+		 * used, as simple reassignments will just set
+		 * pointers to rapidly changing char arrays.
+		 */ 
 		strcpy(buildNode->indexWord, indexWordIn);
 		strcpy(buildNode->valueWord, valueWordIn);
 		buildNode->frequency = 1;
