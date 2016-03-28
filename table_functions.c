@@ -72,13 +72,14 @@ value* insertNode(char *indexWordIn, char *valueWordIn){
  	return sum;
  }
 
+/*
+ * Getters for linked list operations
+ */
  value* getHashRow(int index){
  	return hashtable[index];
  }
 
  char* getName(value *val){
- 	//char *test = (char *)malloc(100 * sizeof(char));
- 	//strcpy(testName, val->indexWord);
  	return val->indexWord;
  }
 
